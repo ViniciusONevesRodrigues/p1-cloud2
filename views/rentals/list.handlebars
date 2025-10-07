@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="/css/listStyles.css">
+<h1>Lista de Locações</h1>
+<a href="/rentals/new" class="btn btn-primary">Nova Locação</a>
+
+<table border="1" cellpadding="8" style="margin-top: 15px; width: 100%;">
+  <thead>
+    <tr>
+      <th>Veículo ID</th>
+      <th>Cliente ID</th>
+      <th>Início</th>
+      <th>Fim</th>
+      <th>Preço</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each rentals}}
+      <tr>
+        <td>{{vehicleId}}</td>
+        <td>{{clientId}}</td>
+        <td>{{startDate}}</td>
+        <td>{{endDate}}</td>
+        <td>{{price}}</td>
+        <td>
+          <a href="/rentals/edit/{{rowKey}}">Editar</a> |
+          <form action="/rentals/delete/{{rowKey}}" method="POST" style="display:inline;">
+            <button type="submit" onclick="return confirm('Excluir esta locação?')">Excluir</button>
+          </form>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

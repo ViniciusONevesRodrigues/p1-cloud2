@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="/css/listStyles.css">
+<h1>Veículos</h1>
+<a href="/vehicles/new" class="btn">Cadastrar novo veículo</a>
+
+
+
+<table>
+  <thead><tr><th>Foto</th><th>Marca</th><th>Modelo</th><th>Ano</th><th>Placa</th><th>Preço</th><th>Disponível</th><th>Ações</th></tr></thead>
+  <tbody>
+    {{#each vehicles}}
+    <tr>
+      <td>{{#if photoUrl}}<img src="{{photoUrl}}" width="120">{{/if}}</td>
+      <td>{{brand}}</td>
+      <td>{{model}}</td>
+      <td>{{year}}</td>
+      <td>{{plate}}</td>
+      <td>{{price}}</td>
+      <td>{{#if available}}Sim{{else}}Não{{/if}}</td>
+      <td>
+        <a href="/vehicles/edit/{{rowKey}}">Editar</a>
+        <form action="/vehicles/{{rowKey}}?_method=DELETE" method="post" style="display:inline;">
+          <button type="submit" onclick="return confirm('Excluir?')">Excluir</button>
+        </form>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

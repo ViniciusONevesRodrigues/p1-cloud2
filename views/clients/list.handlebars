@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="/css/listStyles.css">
+<h1>Clientes</h1>
+<a href="/clients/new" class="btn">Cadastrar novo cliente</a>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Telefone</th>
+      <th>Endereço</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each clients}}
+    <tr>
+      <td data-label="Nome">{{name}}</td>
+      <td data-label="Email">{{email}}</td>
+      <td data-label="Telefone">{{phone}}</td>
+      <td data-label="Endereço">{{address}}</td>
+      <td data-label="Ações">
+        <a href="/clients/edit/{{rowKey}}">Editar</a>
+        <form action="/clients/{{rowKey}}?_method=DELETE" method="post" style="display:inline;">
+          <button type="submit" onclick="return confirm('Deseja excluir este cliente?')">Excluir</button>
+        </form>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="/css/formStyles.css">
+<h1>Editar Locação</h1>
+
+<form action="/rentals/edit/{{rental.rowKey}}" method="POST">
+  <label>Veículo:</label>
+  <select name="vehicleId" required>
+    <option value="">Selecione</option>
+    {{#each vehicles}}
+      <option value="{{rowKey}}" {{#if (eq rowKey ../rental.vehicleId)}}selected{{/if}}>
+        {{brand}} {{model}} ({{plate}})
+      </option>
+    {{/each}}
+  </select><br>
+
+  <label>Cliente:</label>
+  <select name="clientId" required>
+    <option value="">Selecione</option>
+    {{#each clients}}
+      <option value="{{rowKey}}" {{#if (eq rowKey ../rental.clientId)}}selected{{/if}}>
+        {{name}}
+      </option>
+    {{/each}}
+  </select><br>
+
+  <label>Data Início:</label>
+  <input type="date" name="startDate" value="{{rental.startDate}}" required><br>
+
+  <label>Data Fim:</label>
+  <input type="date" name="endDate" value="{{rental.endDate}}" required><br>
+
+  <label>Preço:</label>
+  <input type="number" step="0.01" name="price" value="{{rental.price}}" required><br>
+
+  <button type="submit">Atualizar</button>
+</form>
